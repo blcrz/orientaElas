@@ -32,7 +32,9 @@ class menu extends HTMLElement {
 
         const img = document.createElement('img')
         img.classList.add('nav-logo')
-        img.src = '../view/assets/logotipo.png'
+        const path = this.getAttribute('path-img-logo')
+        const pathImg = path ? path : '../view/assets/'
+        img.src = `${pathImg}logotipo.png`
 
         a.appendChild(img)
 
