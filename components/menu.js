@@ -18,6 +18,9 @@ class menu extends HTMLElement {
     }
 
     createMenu() {
+        const pathAttr = this.getAttribute('path-pages')
+        const pathPages = pathAttr ?? './'
+
         const nav = document.createElement('nav')
         nav.className = 'navbar navbar-expand-lg navbar-light bg-light pb-0 pt-0'
 
@@ -28,12 +31,12 @@ class menu extends HTMLElement {
 
         const a = document.createElement('a')
         a.classList.add('navbar-brand')
-        a.href = '#'
+        a.href = pathAttr ? '#' : '../index.html'
 
         const img = document.createElement('img')
-        img.classList.add('nav-logo')
+        img.className = 'nav-logo mx-5'
         const path = this.getAttribute('path-img-logo')
-        const pathImg = path ? path : '../view/assets/'
+        const pathImg = path ?? '../view/assets/'
         img.src = `${pathImg}logotipo.png`
 
         a.appendChild(img)
@@ -59,58 +62,59 @@ class menu extends HTMLElement {
         // itens do menu
 
         const divCollapse = document.createElement('div')
-        divCollapse.className = 'collapse navbar-collapse'
+        divCollapse.className = 'collapse navbar-collapse mx-5'
         divCollapse.id = 'navbarSupportedContent'
 
         const ul = document.createElement('ul')
-        ul.className = 'navbar-nav mb-2 mb-lg-0'
+        ul.className = 'navbar-nav mb-2 mb-lg-0 align-items-center'
 
         const li1 = document.createElement('li')
-        li1.classList.add('nav-item')
+        li1.className = 'nav-item px-3'
 
         const ali1 = document.createElement('a')
         ali1.classList.add('nav-link')
         ali1.innerHTML = 'benefícios'
-        ali1.href = '#'
+        ali1.href = `${pathPages}beneficios.html`
 
         li1.appendChild(ali1)
         ul.appendChild(li1)
 
         const li2 = document.createElement('li')
-        li2.classList.add('nav-item')
+        li2.className = 'nav-item px-3'
 
         const ali2 = document.createElement('a')
         ali2.classList.add('nav-link')
         ali2.innerHTML = 'sobre'
-        ali2.href = '#'
+        ali2.href = `${pathPages}sobre.html`
 
         li2.appendChild(ali2)
         ul.appendChild(li2)
 
         const li3 = document.createElement('li')
-        li3.classList.add('nav-item')
+        li3.className = 'nav-item px-3'
 
         const ali3 = document.createElement('a')
         ali3.classList.add('nav-link')
         ali3.innerHTML = 'quem somos'
-        ali3.href = '#'
+        ali3.href = `${pathPages}somos.html`
 
         li3.appendChild(ali3)
         ul.appendChild(li3)
 
-        const showButton = parseInt(this.getAttribute('show-register-button'))
+        const login = localStorage.getItem('login')
 
-        if (showButton) {
-            const li4 = document.createElement('li')
-            li4.classList.add('nav-item')
 
-            const buttonLi4 = document.createElement('button')
-            buttonLi4.className = 'btn nav-button'
-            buttonLi4.innerHTML = 'login/cadastro'
+        const li4 = document.createElement('li')
+        li4.className = 'nav-item px-3'
 
-            li4.appendChild(buttonLi4)
-            ul.appendChild(li4)
-        }
+        const buttonLi4 = document.createElement('a')
+        buttonLi4.className = 'btn nav-button'
+        buttonLi4.innerHTML = !login ? 'login/cadastro' : 'buscar'
+        buttonLi4.href = !login ? `${pathPages}login.html` : `${pathPages}busca.html`
+
+        li4.appendChild(buttonLi4)
+        ul.appendChild(li4)
+
 
         // adicionando todos os elementos no navbar
 
@@ -138,10 +142,15 @@ class menu extends HTMLElement {
     style(){
         const style = document.createElement('style')
         style.textContent = `
+
+
         .nav-logo {
-            width: 15vh
+            width: 15vh;
         }
 
+        .navbar {
+            box-shadow: 0px 0px 16px #cccccc;
+        }
         .nav-button {
             background-color: #975AB6;
             color: #fff;
@@ -150,7 +159,17 @@ class menu extends HTMLElement {
 
         .navbar-collapse{
             justify-content: end !important;
-        }`
+        }
+
+        .btn:hover{
+            transform: scale(1.02);
+            color: #fff;
+        }
+
+        .btn:focus{
+            box-shadow: unset;
+        }
+        `
         return style
     }
 }
