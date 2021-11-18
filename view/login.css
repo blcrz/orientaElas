@@ -1,0 +1,46 @@
+form{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+
+}
+
+label,
+H2{
+    color: #302F2F;
+    font-size:25px;
+    padding: 5px;
+
+
+}
+
+
+.botao-cor-especial{
+    background-color: #975AB6;
+    color: #ffffff;
+    width: 25%;
+    border-radius:10px;
+    text-align: center;
+    font-size:15px;
+
+
+}
+
+
+#exampleInputEmail1,
+#exampleInputPassword1{
+  width: 50%;
+  border-radius:10px;
+  text-align: center;
+  display: block;
+  margin: 30px auto;  
+
+}
+
+a{
+    display: block;
+    color:#975AB6;
+    font-size:20px;
+    text-align: center;
+}
